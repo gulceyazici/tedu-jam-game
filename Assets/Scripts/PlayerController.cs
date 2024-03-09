@@ -89,4 +89,9 @@ public class PlayerController : MonoBehaviour
         return this.budget;
     }
 
+    public void SetBudget(float money)
+    {
+        this.budget = money;
+    }
+
 }

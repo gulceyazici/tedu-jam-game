@@ -16,7 +16,16 @@ namespace Assets.Scripts
         [SerializeField]
         private GameObject inspectionChoicePanel; // Assign this in the Unity Inspector
 
+        private AsteroidMiningSite asteroidMiningSite;
+        private PlayerController playerController;
 
+        private GameObject player;
+
+        void Start()
+        {
+            player = GameObject.FindWithTag("Player");
+            playerController = player.GetComponent<PlayerController>();
+        }
         private void Awake()
         {
             if (Instance == null)
@@ -32,11 +41,13 @@ namespace Assets.Scripts
 
         public void PlayerNearAsteroid(bool isNear, GameObject asteroid)
         {
+
             if (isNear)
             {
                 // Prompt UI to ask player if they want to inspect the asteroid
                 // This can be a simple UI panel with buttons
                 // You might use events or callbacks to handle the player's choice
+                asteroidMiningSite = asteroid.GetComponent<AsteroidMiningSite>();
                 Debug.Log("PLAYER IS NEAR");
                 ShowInspectionChoiceUI(asteroid);
             }
@@ -67,7 +78,17 @@ namespace Assets.Scripts
             Debug.Log("Inspect button pressed.");
             // Add your inspection logic here
             // E.g., load a new scene, display enemy encounter, etc.
-            SceneManager.LoadScene(1);
+            Debug.Log("near asteroid mine: " + asteroidMiningSite.asteroidMine.ToString());
+            if(playerController != null)
+            {
+
+                playerController.SetBudget(playerController.GetBudget() + (float)asteroidMiningSite.asteroidMine);
+            }
+            else
+            {
+                Debug.Log("player is null");
+            }
+            
         }
 
         public void OnCancelButtonPressed()

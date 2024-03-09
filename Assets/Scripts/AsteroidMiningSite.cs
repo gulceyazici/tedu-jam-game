@@ -10,7 +10,7 @@ public class AsteroidMiningSite : MonoBehaviour
     public bool asteroidHasEnemy;
     public int minePresenceProbability = 40;
     public int enemyPresenceProbability = 50;
-    public AsteroidMines asteroidMine;
+    public AsteroidMines asteroidMine = AsteroidMines.None;
 
     private List<(AsteroidMines, float)> minesWithProbabilities = new List<(AsteroidMines, float)>
     {
