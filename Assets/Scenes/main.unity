@@ -693,8 +693,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f45310d7cf61980498df9039e76c1c0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerShipSpeed: 12
-  rotationSpeed: 150
+  playerShipSpeed: 50
+  playerShipXSpeed: 150
+  rotationSpeed: 200
+  thrusterAudio: {fileID: 0}
+  thrusterParticlesLeft: {fileID: 0}
+  thrusterParticlesRight: {fileID: 0}
   verticalInput: 0
   horizontalInput: 0
   rb: {fileID: 640453297}
@@ -831,6 +835,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1757504524}
+  smoothSpeed: 0.125
+  offset: {x: 0, y: 0, z: -60}
 --- !u!1 &699316117
 GameObject:
   m_ObjectHideFlags: 0
