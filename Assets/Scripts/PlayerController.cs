@@ -14,8 +14,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float rotationSpeed;
     [SerializeField] private AudioSource thrusterAudio;
-    [SerializeField] private ParticleSystem thrusterParticles;
-    
+    [SerializeField] private ParticleSystem thrusterParticlesLeft;
+    [SerializeField] private ParticleSystem thrusterParticlesRight;
+
+
     public float verticalInput;
     public float horizontalInput;
 
@@ -103,7 +105,9 @@ public class PlayerController : MonoBehaviour
             {
                 // Play the audio
                 thrusterAudio.Play();
-                thrusterParticles.Play();
+                thrusterParticlesLeft.Play();
+                thrusterParticlesRight.Play();
+
             }
             else
             {
@@ -119,7 +123,8 @@ public class PlayerController : MonoBehaviour
             {
                 // Stop the audio
                 thrusterAudio.Stop();
-                thrusterParticles.Stop();
+                thrusterParticlesLeft.Stop();
+                thrusterParticlesRight.Stop();
             }
         }
     }
