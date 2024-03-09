@@ -5,20 +5,18 @@ using UnityEngine;
 public class MoveForward : MonoBehaviour
 {
     public float maxSpeed = 5f;
-    //public Rigidbody rb;
     public float force = 2f;
 
     // Update is called once per frame
+    private void Start()
+    {
+        
+    }
     void Update()
     {
-        //rb.AddForce(force*Time.deltaTime * Vector3.right, ForceMode.Impulse);
-        //rb.AddForce(20 * Time.deltaTime * -Vector3.up, ForceMode.Impulse);
-        Vector3 pos = transform.position;
+      Vector2 position = transform.position;
+        position = new Vector2(position.x, position.y + maxSpeed*Time.deltaTime);
+        transform.position = position;  
 
-        Vector3 velocity = new Vector3(0, maxSpeed * Time.deltaTime, 0);
-
-        pos += transform.rotation * velocity;
-
-        transform.position = pos;
     }
 }

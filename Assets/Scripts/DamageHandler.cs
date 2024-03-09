@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageHandler : MonoBehaviour
 {
-    public int health = 1;
+    public int health = 10;
 
     public float invulnPeriod = 0;
     float invulnTimer = 0;
@@ -16,12 +16,13 @@ public class DamageHandler : MonoBehaviour
     {
         correctLayer = gameObject.layer;
 
+
         // NOTE!  This only get the renderer on the parent object.
         // In other words, it doesn't work for children. I.E. "enemy01"
 
     }
 
-    void OnTriggerEnter2D()
+    void OnTriggerEnter()
     {
         health--;
 

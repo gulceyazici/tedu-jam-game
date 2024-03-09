@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
     public Transform playerTransform; // The player's transform
     public Vector3 offset; // Offset distance between the player and camera
     public GameObject player;
-    public float followSpeed = 2f; // Speed at which the camera/enemy follows the player
+    public float followSpeed = 10f; // Speed at which the camera/enemy follows the player
     // Start is called before the first frame update
     void Start()
     {

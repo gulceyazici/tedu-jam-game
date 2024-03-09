@@ -118,8 +118,8 @@ Transform:
   m_GameObject: {fileID: 1336385348731362}
   serializedVersion: 2
   m_LocalRotation: {x: 0.4427592, y: -0.46305218, z: 0.5442679, w: 0.5415898}
-  m_LocalPosition: {x: 0, y: 0, z: 9499.73}
-  m_LocalScale: {x: 1, y: 0.4304563, z: 0.4826802}
+  m_LocalPosition: {x: -0.0093, y: 0.0786, z: 9500.161}
+  m_LocalScale: {x: 0.4088, y: 0.4304563, z: 0.4826802}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4207770881812972}
@@ -231,7 +231,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -272,7 +272,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 2.6645353e-15, y: 0.000061035156}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EnemyShooting : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class EnemyShooting : MonoBehaviour
 
     public float fireDelay = 0.50f;
     float cooldownTimer = 0;
+    public float maxSpeed = 50;
 
     void Start()
     {
@@ -27,9 +29,7 @@ public class EnemyShooting : MonoBehaviour
         {
             // SHOOT!
             cooldownTimer = fireDelay;
-
             GameObject bulletGO1 = (GameObject)Instantiate(bulletPrefab1);
-            Debug.Log("before destroy x: " + bulletGO1.transform.position.x);
             bulletGO1.transform.position = bulletOffset1.transform.position;
             GameObject bulletGO2 = (GameObject)Instantiate(bulletPrefab2);
             bulletGO2.transform.position = bulletOffset2.transform.position;
