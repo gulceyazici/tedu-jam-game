@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
 {
@@ -59,5 +61,21 @@ namespace Assets.Scripts
             // Hide or disable the inspection choice UI
             inspectionChoicePanel.SetActive(false);
         }
+
+        public void OnInspectButtonPressed()
+        {
+            Debug.Log("Inspect button pressed.");
+            // Add your inspection logic here
+            // E.g., load a new scene, display enemy encounter, etc.
+            SceneManager.LoadScene(1);
+        }
+
+        public void OnCancelButtonPressed()
+        {
+            Debug.Log("Cancel button pressed.");
+            // Hide the inspection choice UI
+            HideInspectionChoiceUI();
+        }
+
     }
 }
