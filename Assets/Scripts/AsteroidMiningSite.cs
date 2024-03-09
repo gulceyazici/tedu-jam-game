@@ -2,6 +2,7 @@ using Assets.Enums;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AsteroidMiningSite : MonoBehaviour
 {
@@ -27,10 +28,20 @@ public class AsteroidMiningSite : MonoBehaviour
     {
         EnemyPresence();
 
-        if (true)
+        if (!asteroidHasEnemy)
         {
             MinePresence();
         }
+        else
+        {
+            //SceneManager.LoadScene(1);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 
     private void EnemyPresence()
@@ -48,7 +59,7 @@ public class AsteroidMiningSite : MonoBehaviour
         asteroidHasMine = diceMine <= minePresenceProbability;
         Debug.Log("Asteroid has mine: " + asteroidHasMine);
 
-        if (true)
+        if (asteroidHasMine)
         {
             asteroidMine = SelectMineRandomly();
             Debug.Log("Asteroid has: " + asteroidMine.ToString());
@@ -80,8 +91,4 @@ public class AsteroidMiningSite : MonoBehaviour
         return AsteroidMines.None;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
 }
