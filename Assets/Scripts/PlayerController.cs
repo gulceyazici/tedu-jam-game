@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
 
     private float xRange = 100.0f;
 
+    private float budget = 0f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -80,6 +82,11 @@ public class PlayerController : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(1 * playerShipSpeed * Time.deltaTime* Vector3.right, ForceMode.Impulse);
         }
         GetComponent<Rigidbody>().AddForce(horizontalInput * playerShipSpeed * Time.deltaTime* Vector3.right  , ForceMode.Impulse);
+    }
+
+    public float GetBudget()
+    {
+        return this.budget;
     }
 
 }
