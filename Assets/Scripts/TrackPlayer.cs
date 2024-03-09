@@ -5,27 +5,24 @@ using UnityEngine;
 public class TrackPlayer : MonoBehaviour
 {
 
-    public Transform playerTransform; // The player's transform
-    public Vector3 offset; // Offset distance between the player and camera
-    public GameObject player;
-    // Start is called before the first frame update
+    public Transform playerTransform; // Assign this in the inspector
+    private Quaternion initialRotation;
+
     void Start()
     {
-
+        // Capture the initial rotation of the camera at the start of the scene
+        initialRotation = transform.rotation;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     void LateUpdate()
     {
-        // Check if the playerTransform is not null to avoid errors
         if (playerTransform != null)
         {
-            // Set the camera's position to the player's position with the offset
-            transform.position = playerTransform.position + offset;
+            // Follow the player's position
+            transform.position = playerTransform.position + initialRotation * Vector3.back * 50 + Vector3.up * 5; // Example offset, adjust as needed
+
+            // Keep the camera's original rotation constant
+            transform.rotation = initialRotation;
         }
     }
 
