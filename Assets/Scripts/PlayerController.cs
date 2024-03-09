@@ -101,13 +101,16 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
         {
+
+            thrusterParticlesLeft.Play();
+            thrusterParticlesRight.Play();
             // Check if thrusterAudio is assigned and not null
             if (thrusterAudio != null && thrusterAudio.isPlaying == false)
             {
                 // Play the audio
                 thrusterAudio.Play();
-                thrusterParticlesLeft.Play();
-                thrusterParticlesRight.Play();
+
+                Debug.Log("threuster is playing?: " + thrusterParticlesLeft.isPlaying);
 
             }
             else
@@ -119,13 +122,15 @@ public class PlayerController : MonoBehaviour
         // Check if the W key is released
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
         {
+
+            thrusterParticlesLeft.Stop();
+            thrusterParticlesRight.Stop();
             // Check if thrusterAudio is playing
             if (thrusterAudio != null && thrusterAudio.isPlaying)
             {
                 // Stop the audio
                 thrusterAudio.Stop();
-                thrusterParticlesLeft.Stop();
-                thrusterParticlesRight.Stop();
+
             }
         }
     }
