@@ -144,7 +144,7 @@ MonoBehaviour:
   rotationSpeed: 150
   verticalInput: 0
   horizontalInput: 0
-  rigidbody: {fileID: 640453297}
+  rb: {fileID: 0}
 --- !u!54 &640453297
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -458,11 +458,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1207428891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1147938156 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4388063611836051347, guid: 3322c842c425b864ea8eb933bff766ca, type: 3}
-  m_PrefabInstance: {fileID: 1007108534}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1207428888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -501,15 +496,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1430374184068749007, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.2
+      value: -7.4
       objectReference: {fileID: 0}
     - target: {fileID: 1430374184068749007, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 40
+      value: 55.4
       objectReference: {fileID: 0}
     - target: {fileID: 1430374184068749007, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9500
+      value: 9500.9
       objectReference: {fileID: 0}
     - target: {fileID: 1430374184068749007, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -729,7 +724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1757504524}
   offset: {x: 0, y: 50, z: 0}
-  player: {fileID: 1147938156}
+  player: {fileID: 0}
   followSpeed: 2
 --- !u!4 &1207428891 stripped
 Transform:
@@ -752,6 +747,7 @@ MonoBehaviour:
   bulletOffset2: {fileID: 1095243217}
   bulletPrefab1: {fileID: 1336385348731362, guid: 54958f8430f04ae4ab653a498c64314c, type: 3}
   bulletPrefab2: {fileID: 1336385348731362, guid: 54958f8430f04ae4ab653a498c64314c, type: 3}
+  centerOfMass: {fileID: 0}
   fireDelay: 1
 --- !u!50 &1207428895
 Rigidbody2D:

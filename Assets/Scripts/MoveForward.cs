@@ -17,7 +17,7 @@ public class MoveForward : MonoBehaviour
 
         Vector3 velocity = new Vector3(0, maxSpeed * Time.deltaTime, 0);
 
-        pos += transform.rotation * velocity;
+        pos += velocity;
 
         transform.position = pos;
     }
