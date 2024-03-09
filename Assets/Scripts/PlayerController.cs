@@ -8,8 +8,12 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float playerShipSpeed;
+
+    [SerializeField]
+    private float playerShipXSpeed;
     [SerializeField]
     private float rotationSpeed;
+    [SerializeField] private AudioSource thrusterAudio;
     
     public float verticalInput;
     public float horizontalInput;
@@ -18,13 +22,12 @@ public class PlayerController : MonoBehaviour
 
     private float maxRotateAngle = 45.0f;
 
-    private float xRange = 100.0f;
+    private float xRange = 300.0f;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -32,11 +35,13 @@ public class PlayerController : MonoBehaviour
     {
         MoveShip();
         RotateShip();
+
     }
 
     private void MoveShip()
     {
         verticalInput = UnityEngine.Input.GetAxis("Vertical");
+
 
         GetComponent<Rigidbody>().AddForce(verticalInput * playerShipSpeed * Time.deltaTime *Vector3.up , ForceMode.Impulse);
 
@@ -47,6 +52,10 @@ public class PlayerController : MonoBehaviour
         if (transform.position.x < -xRange)
         {
             transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+        }
+        if(UnityEngine.Input.GetKeyDown(KeyCode.W)) 
+        { 
+            //thrusterAudio.Play();
         }
     }
 
@@ -79,7 +88,7 @@ public class PlayerController : MonoBehaviour
         {
             GetComponent<Rigidbody>().AddForce(1 * playerShipSpeed * Time.deltaTime* Vector3.right, ForceMode.Impulse);
         }
-        GetComponent<Rigidbody>().AddForce(horizontalInput * playerShipSpeed * Time.deltaTime* Vector3.right  , ForceMode.Impulse);
+        GetComponent<Rigidbody>().AddForce(horizontalInput * playerShipXSpeed * Time.deltaTime* Vector3.right  , ForceMode.Impulse);
     }
 
 }

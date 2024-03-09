@@ -140,8 +140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f45310d7cf61980498df9039e76c1c0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerShipSpeed: 12
-  rotationSpeed: 150
+  playerShipSpeed: 50
+  playerShipXSpeed: 150
+  rotationSpeed: 200
   verticalInput: 0
   horizontalInput: 0
   rb: {fileID: 0}
@@ -258,12 +259,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673225455}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6087616, y: -0, z: -0, w: 0.7933532}
-  m_LocalPosition: {x: 7.2, y: 53.990242, z: -14.039993}
+  m_LocalRotation: {x: -0.13052592, y: -0, z: -0, w: 0.99144495}
+  m_LocalPosition: {x: 0, y: -1.7400007, z: 9446.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1757504524}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -14.326, y: -1.731, z: 0.523}
 --- !u!114 &673225459
 MonoBehaviour:
@@ -272,15 +273,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673225455}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50245bdf5cd4a5a4eaff1ff702d8e5ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1757504524}
-  offset: {x: 0, y: 0, z: -70}
-  player: {fileID: 0}
-  followSpeed: 1
+  smoothSpeed: 0.1
+  offset: {x: 2, y: 2, z: -50}
 --- !u!1 &934703206
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,10 +419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4012241314400597289, guid: 3322c842c425b864ea8eb933bff766ca, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 673225458}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4388063611836051347, guid: 3322c842c425b864ea8eb933bff766ca, type: 3}
       insertIndex: -1
@@ -674,6 +671,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1369844712}
   - {fileID: 934703208}
+  - {fileID: 673225458}
   - {fileID: 1007108534}
   - {fileID: 1598901337}
   - {fileID: 1998079765}
