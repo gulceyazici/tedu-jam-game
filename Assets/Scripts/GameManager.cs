@@ -32,6 +32,8 @@ namespace Assets.Scripts
 
         public GameObject player;
 
+        public static float quota { get; private set; } = 1000f;
+
         void Start()
         {
 
@@ -57,7 +59,7 @@ namespace Assets.Scripts
             }
         }
 
-        public void PlayerNearAsteroid(bool isNear, bool hasInspected,GameObject asteroid)
+        public void PlayerNearAsteroid(bool isNear, bool hasInspected, GameObject asteroid)
         {
 
             if (isNear && hasInspected == false)
