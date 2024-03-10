@@ -1,6 +1,8 @@
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDamageHandler : MonoBehaviour
 {
@@ -18,11 +20,13 @@ public class PlayerDamageHandler : MonoBehaviour
 
     private bool isDying = false; // Flag to indicate the death sequence has started
 
+    public string dataToPass;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy Laser"))
         {
-            health--;
+            //health--;
             
             if(health > 0)
             playerDamageReceiveAudioSource.Play();
@@ -33,6 +37,8 @@ public class PlayerDamageHandler : MonoBehaviour
             if (health <= 0 && !isDying)
             {
                 isDying = true; // Set the flag to true to prevent multiple triggers
+                GameManager.Instance.dataToPass = "Game Over !";
+                GameManager.Instance.enemyEncounterAudioSource.Stop();
                 playerDeadAudioSource.Play();
                 Die();
             }
@@ -50,6 +56,7 @@ public class PlayerDamageHandler : MonoBehaviour
     IEnumerator DestroyPlayerAfterSound(float delay)
     {
         yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(2);
         Destroy(gameObject);
     }
 

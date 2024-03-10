@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.SearchService;
 using UnityEngine;
@@ -20,14 +21,20 @@ namespace Assets.Scripts
         [SerializeField]
         private GameObject inspectionChoicePanel; // Assign this in the Unity Inspector
         [SerializeField]
+        private GameObject mineEncounterPanel; // Assign this in the Unity Inspector
+        [SerializeField]
+        private GameObject enemyEncounterPanel; // Assign this in the Unity Inspector
+        [SerializeField]
         private AudioSource outerSpaceAudioSource; // Assign in the Inspector
         [SerializeField]
-        private AudioSource enemyEncounterAudioSource; // Assign in the Inspector
+        public AudioSource enemyEncounterAudioSource; // Assign in the Inspector
         [SerializeField]
         private AudioSource playerReachQuotaAudioSource; // Assign in the Inspector
 
         private AsteroidMiningSite asteroidMiningSite;
         private PlayerController playerController;
+
+        public TextMeshProUGUI mineInfoText; // Assign this in the inspector
 
         public AudioSource collectMineAudio;
         public ParticleSystem collectMineParticle;
@@ -38,7 +45,13 @@ namespace Assets.Scripts
         public GameObject enemy;
         private EnemyDamageHandler enemyDamageHandler;
 
+        public string dataToPass;
+
         public GameObject player;
+
+        public string encounterEnemyMessage = "Oh no! A rival treasure hunter appeared!!";
+
+        public string encounterMineMessage = "You have found";
 
         public static float quota { get; private set; } = 100f;
 
@@ -55,7 +68,7 @@ namespace Assets.Scripts
             if (Instance == null)
             {
                 Instance = this;
-                DontDestroyOnLoad(gameObject);
+                //DontDestroyOnLoad(gameObject);
             }
             else
             {
@@ -89,9 +102,21 @@ namespace Assets.Scripts
 
         private IEnumerator FadeOutAndPlayQuotaReached(AudioSource fadeOutAudio, AudioSource quotaReachedAudio, float fadeDuration)
         {
+            // Fade out the current audio
             yield return StartCoroutine(FadeOutAudioSource(fadeOutAudio, fadeDuration));
+
+            // Ensure fadeOutAudio is completely stopped before starting the next audio
+            fadeOutAudio.Stop();
+
+            // Play the quota reached audio and wait for it to finish
             quotaReachedAudio.Play();
+            yield return new WaitForSeconds(quotaReachedAudio.clip.length);
+
+            // Now that the quota audio has finished, load the new scene
+            SceneManager.LoadScene(2);
         }
+
+
 
 
         public void PlayerNearAsteroid(bool isNear, bool hasInspected, GameObject asteroid)
@@ -146,7 +171,15 @@ namespace Assets.Scripts
                 if (playerController.GetBudget() >= quota)
                 {
                     // Fade out the outer space audio before playing the quota reach sound
+                    dataToPass = "Congratulations you are the ruler of the outers !";
                     StartCoroutine(FadeOutAndPlayQuotaReached(outerSpaceAudioSource, playerReachQuotaAudioSource, 1f)); // 1f is the fade duration, adjust as needed
+                }
+                else
+                {
+                    mineInfoText.text = encounterMineMessage + " " + asteroidMiningSite.asteroidMine.ToString() + " !! You have earned $" + (float)asteroidMiningSite.asteroidMine;
+                    mineEncounterPanel.SetActive(true);
+
+                    Invoke("ExitMineEncounterPanel", 2.3f);
                 }
 
                 asteroidMiningSite.hasInspected = true;
@@ -157,7 +190,11 @@ namespace Assets.Scripts
             {
                 asteroidMiningSite.hasInspected = true;
                 HideInspectionChoiceUI();
-                
+
+                enemyEncounterPanel.SetActive(true);
+
+                Invoke("ExitEnemyEncounterPanel", 1.5f);
+
                 foreach (AsteroidMiningSite asteroidMSite in asteroidMiningSites)
                 {
                     asteroidMSite.gameObject.SetActive(false);
@@ -170,6 +207,20 @@ namespace Assets.Scripts
             }
             asteroidMiningSite.hasInspected = true;
             HideInspectionChoiceUI();
+        }
+
+        private void ExitMineEncounterPanel()
+        {
+            CancelInvoke("ExitMineEncounterPanel");
+
+            mineEncounterPanel.SetActive(false);
+        }
+
+        private void ExitEnemyEncounterPanel()
+        {
+            CancelInvoke("ExitEnemyEncounterPanel");
+
+            enemyEncounterPanel.SetActive(false);
         }
 
         private IEnumerator FadeOutAudioSource(AudioSource audioSource, float fadeDuration)
