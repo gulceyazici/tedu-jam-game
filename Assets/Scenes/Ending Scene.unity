@@ -406,6 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endingMenuAudioSource: {fileID: 131906128}
+  endingMessage: {fileID: 997236}
 --- !u!1 &186727397
 GameObject:
   m_ObjectHideFlags: 0

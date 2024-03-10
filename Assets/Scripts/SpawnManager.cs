@@ -28,6 +28,7 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(player != null)
         spawnPosY = player.transform.position.y + 150f;
     }
 
