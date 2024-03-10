@@ -15,8 +15,8 @@ public class EnemyShooting : MonoBehaviour
 
     int bulletLayer;
 
-    [SerializeField] private float minFireDelay = 0.25f;
-    [SerializeField] private float maxFireDelay = 0.8f;
+    [SerializeField] private float minFireDelay = 0.4f;
+    [SerializeField] private float maxFireDelay = 1.5f;
     float cooldownTimer = 0;
 
     void Start()
