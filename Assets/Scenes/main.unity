@@ -1572,6 +1572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroidHasMine: 0
   asteroidHasEnemy: 0
+  hasInspected: 0
   minePresenceProbability: 40
   enemyPresenceProbability: 50
   asteroidMine: 0
@@ -1783,15 +1784,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1430374184068749007, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.4
+      value: -7.8
       objectReference: {fileID: 0}
     - target: {fileID: 1430374184068749007, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 55.4
+      value: 89.4
       objectReference: {fileID: 0}
     - target: {fileID: 1430374184068749007, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9500.9
+      value: 9503
       objectReference: {fileID: 0}
     - target: {fileID: 1430374184068749007, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2159,7 +2160,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inspectionChoicePanel: {fileID: 1986548812}
   collectMineAudio: {fileID: 1219715891}
-  collectMineParticle: {fileID: 0}
+  collectMineParticle: {fileID: 1307766273}
+  asteroidMiningSites:
+  - {fileID: 1069827316}
+  - {fileID: 1782001202}
+  enemy: {fileID: 1207428889}
+  enemyDamageHandler: {fileID: 0}
   player: {fileID: 640453292}
 --- !u!82 &1219715891
 AudioSource:
@@ -2257,6 +2263,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!198 &1307766273 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7194952087870367274, guid: a56fa166c27c1b64a90204cdc43a72fd, type: 3}
+  m_PrefabInstance: {fileID: 330069182}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1335483562
 GameObject:
   m_ObjectHideFlags: 0
@@ -2739,6 +2750,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroidHasMine: 0
   asteroidHasEnemy: 0
+  hasInspected: 0
   minePresenceProbability: 40
   enemyPresenceProbability: 50
   asteroidMine: 0
