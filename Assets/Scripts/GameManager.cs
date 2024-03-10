@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,15 +20,20 @@ namespace Assets.Scripts
         private AsteroidMiningSite asteroidMiningSite;
         private PlayerController playerController;
 
-        private GameObject player;
+        public AudioSource collectMineAudio;
+        public ParticleSystem collectMineParticle;
+
+        public GameObject player;
 
         void Start()
         {
-            player = GameObject.FindWithTag("Player");
-            playerController = player.GetComponent<PlayerController>();
+
         }
         private void Awake()
         {
+            player = GameObject.FindWithTag("Player");
+            playerController = player.GetComponent<PlayerController>();
+
             if (Instance == null)
             {
                 Instance = this;
@@ -79,14 +85,22 @@ namespace Assets.Scripts
             // Add your inspection logic here
             // E.g., load a new scene, display enemy encounter, etc.
             Debug.Log("near asteroid mine: " + asteroidMiningSite.asteroidMine.ToString());
-            if(playerController != null)
+
+
+
+            Debug.Log(playerController);
+
+            if (playerController != null && asteroidMiningSite.asteroidMine != AsteroidMines.None)
             {
 
+                collectMineAudio.Play();
+                collectMineParticle.Play();
                 playerController.SetBudget(playerController.GetBudget() + (float)asteroidMiningSite.asteroidMine);
+                
             }
             else
             {
-                Debug.Log("player is null");
+                Debug.Log("player controller is null or asteroid doesn't has a mine");
             }
             
         }
