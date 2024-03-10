@@ -25,7 +25,8 @@ namespace Assets.Scripts
         public AudioSource collectMineAudio;
         public ParticleSystem collectMineParticle;
 
-        public List<AsteroidMiningSite> asteroidMiningSites;
+        public List<AsteroidMiningSite> asteroidMiningSites = new List<AsteroidMiningSite>();
+
 
         public GameObject enemy;
         private EnemyDamageHandler enemyDamageHandler;
@@ -153,6 +154,14 @@ namespace Assets.Scripts
                 asteroid.gameObject.SetActive(true);
             }
             enemyDamageHandler.health = 5;
+        }
+        // Method to add spawned asteroids to the list
+        public void AddAsteroidToMiningSites(AsteroidMiningSite asteroid)
+        {
+            if (!asteroidMiningSites.Contains(asteroid))
+            {
+                asteroidMiningSites.Add(asteroid);
+            }
         }
 
 
