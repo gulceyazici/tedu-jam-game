@@ -22,8 +22,13 @@ public class DamageHandler : MonoBehaviour
 
     }
 
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
+        if(other.CompareTag("Untagged") && gameObject.CompareTag("Enemy Laser"))
+        {
+            return;
+        }
+
         health--;
 
         if (invulnPeriod > 0)
@@ -59,6 +64,7 @@ public class DamageHandler : MonoBehaviour
 
         if (health <= 0)
         {
+            Debug.Log("Health laser: " + health);
             Die();
         }
     }

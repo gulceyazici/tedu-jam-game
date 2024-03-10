@@ -8,6 +8,7 @@ TagManager:
   - Asteroid
   - Player Laser
   - Asteroid Destroyer
+  - Enemy Laser
   layers:
   - Default
   - TransparentFX

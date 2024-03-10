@@ -52,6 +52,8 @@ public class PlayerController : MonoBehaviour
     {
         verticalInput = UnityEngine.Input.GetAxis("Vertical");
 
+        var velX = rb.velocity.x;
+        var velY = rb.velocity.y;
 
         GetComponent<Rigidbody>().AddForce(verticalInput * playerShipSpeed * Time.deltaTime *Vector3.up , ForceMode.Impulse);
 

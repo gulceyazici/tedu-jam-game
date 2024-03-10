@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 816821268461007951}
   m_Layer: 7
   m_Name: LaserEnemy
-  m_TagString: Enemy
+  m_TagString: Enemy Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfea0b63d88232344b1d44384f2111a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 30
+  maxSpeed: 100
   force: 2
 --- !u!65 &4303621805556855935
 BoxCollider:
