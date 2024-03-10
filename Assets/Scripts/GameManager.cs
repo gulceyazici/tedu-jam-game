@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Assets.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
@@ -19,15 +21,21 @@ namespace Assets.Scripts
         private AsteroidMiningSite asteroidMiningSite;
         private PlayerController playerController;
 
-        private GameObject player;
+        public AudioSource collectMineAudio;
+        public ParticleSystem collectMineParticle;
+
+
+        public GameObject player;
 
         void Start()
         {
-            player = GameObject.FindWithTag("Player");
-            playerController = player.GetComponent<PlayerController>();
+
         }
         private void Awake()
         {
+            player = GameObject.FindWithTag("Player");
+            playerController = player.GetComponent<PlayerController>();
+
             if (Instance == null)
             {
                 Instance = this;
@@ -39,10 +47,10 @@ namespace Assets.Scripts
             }
         }
 
-        public void PlayerNearAsteroid(bool isNear, GameObject asteroid)
+        public void PlayerNearAsteroid(bool isNear, bool hasInspected,GameObject asteroid)
         {
 
-            if (isNear)
+            if (isNear && hasInspected == false)
             {
                 // Prompt UI to ask player if they want to inspect the asteroid
                 // This can be a simple UI panel with buttons
@@ -79,14 +87,24 @@ namespace Assets.Scripts
             // Add your inspection logic here
             // E.g., load a new scene, display enemy encounter, etc.
             Debug.Log("near asteroid mine: " + asteroidMiningSite.asteroidMine.ToString());
-            if(playerController != null)
+
+
+
+            Debug.Log(playerController);
+
+            if (playerController != null && asteroidMiningSite.asteroidMine != AsteroidMines.None && asteroidMiningSite.hasInspected == false)
             {
 
+                collectMineAudio.Play();
+                collectMineParticle.Play();
                 playerController.SetBudget(playerController.GetBudget() + (float)asteroidMiningSite.asteroidMine);
+                asteroidMiningSite.hasInspected = true;
+                HideInspectionChoiceUI();
             }
             else
             {
-                Debug.Log("player is null");
+                Debug.Log("player controller is null or asteroid doesn't has a mine");
+
             }
             
         }

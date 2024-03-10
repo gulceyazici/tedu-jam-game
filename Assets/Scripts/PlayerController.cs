@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private float playerShipXSpeed;
     [SerializeField]
     private float rotationSpeed;
-    [SerializeField] private AudioSource thrusterAudio;
+    //[SerializeField] private AudioSource thrusterAudio;
     [SerializeField] private ParticleSystem thrusterParticlesLeft;
     [SerializeField] private ParticleSystem thrusterParticlesRight;
 
@@ -105,34 +105,34 @@ public class PlayerController : MonoBehaviour
             thrusterParticlesLeft.Play();
             thrusterParticlesRight.Play();
             // Check if thrusterAudio is assigned and not null
-            if (thrusterAudio != null && thrusterAudio.isPlaying == false)
-            {
-                // Play the audio
-                thrusterAudio.Play();
+            //if (thrusterAudio != null && thrusterAudio.isPlaying == false)
+            //{
+            //    // Play the audio
+            //    thrusterAudio.Play();
 
-                Debug.Log("threuster is playing?: " + thrusterParticlesLeft.isPlaying);
+            //    Debug.Log("threuster is playing?: " + thrusterParticlesLeft.isPlaying);
 
-            }
-            else
-            {
-                Debug.LogWarning("thrusterAudio is not assigned!");
-            }
+            //}
+            //else
+            //{
+            //    Debug.LogWarning("thrusterAudio is not assigned!");
+            //}
         }
 
         // Check if the W key is released
-        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
-        {
+        //if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        //{
 
-            thrusterParticlesLeft.Stop();
-            thrusterParticlesRight.Stop();
-            // Check if thrusterAudio is playing
-            if (thrusterAudio != null && thrusterAudio.isPlaying)
-            {
-                // Stop the audio
-                thrusterAudio.Stop();
+        //    thrusterParticlesLeft.Stop();
+        //    thrusterParticlesRight.Stop();
+        //    // Check if thrusterAudio is playing
+        //    if (thrusterAudio != null && thrusterAudio.isPlaying)
+        //    {
+        //        // Stop the audio
+        //        thrusterAudio.Stop();
 
-            }
-        }
+        //    }
+        //}
     }
     public float GetBudget()
     {

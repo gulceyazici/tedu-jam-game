@@ -8,6 +8,7 @@ public class AsteroidMiningSite : MonoBehaviour
 {
     public bool asteroidHasMine;
     public bool asteroidHasEnemy;
+    public bool hasInspected = false;
     public int minePresenceProbability = 40;
     public int enemyPresenceProbability = 50;
     public AsteroidMines asteroidMine = AsteroidMines.None;
