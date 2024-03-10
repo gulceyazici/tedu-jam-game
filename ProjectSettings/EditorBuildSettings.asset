@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: c05feb56c2aa16049b2e7b2f173f7eb3
   - enabled: 1
+    path: Assets/Scenes/LoreScene.unity
+    guid: 516adea81fd69cc44bafaf5501db0432
+  - enabled: 1
     path: Assets/Scenes/main.unity
     guid: 6ef5ed2d794c9f2438e3ca46dc41da28
   - enabled: 1
