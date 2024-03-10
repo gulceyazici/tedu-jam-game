@@ -845,7 +845,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 242.76, y: 50}
+  m_SizeDelta: {x: 293.25, y: 50}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &433142135
 MonoBehaviour:
@@ -2160,7 +2160,6 @@ MonoBehaviour:
   asteroidHasMine: 0
   asteroidHasEnemy: 0
   hasInspected: 0
-  hasInspected: 0
   minePresenceProbability: 40
   enemyPresenceProbability: 50
   asteroidMine: 0
@@ -2845,12 +2844,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inspectionChoicePanel: {fileID: 1986548812}
   collectMineAudio: {fileID: 1219715891}
-  collectMineParticle: {fileID: 1307766273}
+  collectMineParticle: {fileID: 843241509}
   asteroidMiningSites:
   - {fileID: 1069827316}
   - {fileID: 1782001202}
   enemy: {fileID: 1207428889}
-  enemyDamageHandler: {fileID: 0}
   player: {fileID: 640453292}
 --- !u!82 &1219715891
 AudioSource:
@@ -2948,11 +2946,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!198 &1307766273 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7194952087870367274, guid: a56fa166c27c1b64a90204cdc43a72fd, type: 3}
-  m_PrefabInstance: {fileID: 330069182}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1335483562
 GameObject:
   m_ObjectHideFlags: 0
@@ -3306,6 +3299,7 @@ GameObject:
   - component: {fileID: 1672142458}
   - component: {fileID: 1672142457}
   - component: {fileID: 1672142460}
+  - component: {fileID: 1672142461}
   m_Layer: 5
   m_Name: HP Panel
   m_TagString: Untagged
@@ -3441,6 +3435,18 @@ MonoBehaviour:
   - {fileID: 1846308791}
   - {fileID: 559697398}
   - {fileID: 1039205473}
+--- !u!225 &1672142461
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672142455}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!4 &1757504524 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4012241314400597289, guid: 3322c842c425b864ea8eb933bff766ca, type: 3}
