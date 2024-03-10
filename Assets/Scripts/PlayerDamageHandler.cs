@@ -26,7 +26,7 @@ public class PlayerDamageHandler : MonoBehaviour
     {
         if (other.CompareTag("Enemy Laser"))
         {
-            //health--;
+            health--;
             
             if(health > 0)
             playerDamageReceiveAudioSource.Play();

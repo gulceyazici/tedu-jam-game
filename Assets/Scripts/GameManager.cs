@@ -53,7 +53,7 @@ namespace Assets.Scripts
 
         public string encounterMineMessage = "You have found";
 
-        public static float quota { get; private set; } = 100f;
+        public static float quota { get; private set; } = 1000f;
 
         private void Awake()
         {
