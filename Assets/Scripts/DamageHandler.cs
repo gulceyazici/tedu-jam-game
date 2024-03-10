@@ -64,7 +64,6 @@ public class DamageHandler : MonoBehaviour
 
         if (health <= 0)
         {
-            Debug.Log("Health laser: " + health);
             Die();
         }
     }

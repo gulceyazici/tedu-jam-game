@@ -7,8 +7,12 @@ public class EnemyShooting : MonoBehaviour
 {
     public GameObject bulletOffset1;
     public GameObject bulletOffset2;
+
     [SerializeField] public GameObject bulletPrefab1;
     [SerializeField] public GameObject bulletPrefab2;
+
+    [SerializeField] private AudioSource enemyShootingAudioSource; // Assign in the Inspector
+
     int bulletLayer;
 
     [SerializeField] public float fireDelay = 0.50f;
@@ -31,6 +35,9 @@ public class EnemyShooting : MonoBehaviour
             GameObject bulletGO1 = (GameObject)Instantiate(bulletPrefab1);
             bulletGO1.transform.position = bulletOffset1.transform.position;
             GameObject bulletGO2 = (GameObject)Instantiate(bulletPrefab2);
+
+            enemyShootingAudioSource.Play();
+
             bulletGO2.transform.position = bulletOffset2.transform.position;
 
             bulletGO1.layer = bulletLayer;

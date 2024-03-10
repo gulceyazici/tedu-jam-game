@@ -9,6 +9,12 @@ public class EnemyDamageHandler : MonoBehaviour
 
     public event Action EnemyDied;
 
+    [SerializeField]
+    private AudioSource enemyDamageReceiveAudioSource; // Assign in the Inspector
+
+    [SerializeField]
+    private AudioSource enemyDeadAudioSource; // Assign in the Inspector
+
     int correctLayer;
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
@@ -16,28 +22,33 @@ public class EnemyDamageHandler : MonoBehaviour
         if (other.CompareTag("Player Laser"))
         {
             health--;
+            Debug.Log("enemy shot, health: " + health);
+            enemyDamageReceiveAudioSource.Play();
+        }
+
+        if(health <= 0)
+        {
+            Die();
         }
     }
     void Start()
     {
         correctLayer = gameObject.layer;
-
-
     }
     private void Update()
     {
-        if (health <= 0)
-        {
-            Die();
-        }
+        //if (health <= 0)
+        //{
+        //    Die();
+        //}
     }
     public void Die()
     {
         explosion.SetActive(true);
+        
+        enemyDeadAudioSource.Play();
 
-        Invoke("DestroyEnemy", 0.6f);
-
-
+        Invoke("DestroyEnemy", enemyDeadAudioSource.clip.length);
     }
 
     public void DestroyEnemy()
