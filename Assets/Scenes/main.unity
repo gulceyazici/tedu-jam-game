@@ -836,17 +836,17 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433142133}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.015181809}
+  m_LocalPosition: {x: 0, y: 0, z: -0.015116118}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2001564778}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 1, y: 1}
+  m_SizeDelta: {x: 242.76, y: 50}
+  m_Pivot: {x: 1, y: 0}
 --- !u!114 &433142135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -869,15 +869,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 929bf230965694c469b8c432339460fb, type: 2}
+  m_sharedMaterial: {fileID: 1984398377559053232, guid: 929bf230965694c469b8c432339460fb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.9716981, g: 0.6352985, b: 0.22459061, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -900,9 +900,9 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 2
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -930,7 +930,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -1.7256322, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1470,6 +1470,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61bb62591466c3649bdf4905822d72f6, type: 3}
+--- !u!198 &843241509 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7194952087870367274, guid: a56fa166c27c1b64a90204cdc43a72fd, type: 3}
+  m_PrefabInstance: {fileID: 330069182}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &844539979 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4363000815121756, guid: 61bb62591466c3649bdf4905822d72f6, type: 3}
@@ -2839,7 +2844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inspectionChoicePanel: {fileID: 1986548812}
   collectMineAudio: {fileID: 1219715891}
-  collectMineParticle: {fileID: 0}
+  collectMineParticle: {fileID: 843241509}
   player: {fileID: 640453292}
 --- !u!82 &1219715891
 AudioSource:
