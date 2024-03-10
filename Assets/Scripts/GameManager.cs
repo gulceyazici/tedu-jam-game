@@ -23,6 +23,8 @@ namespace Assets.Scripts
         private AudioSource outerSpaceAudioSource; // Assign in the Inspector
         [SerializeField]
         private AudioSource enemyEncounterAudioSource; // Assign in the Inspector
+        [SerializeField]
+        private AudioSource playerReachQuotaAudioSource; // Assign in the Inspector
 
         private AsteroidMiningSite asteroidMiningSite;
         private PlayerController playerController;
@@ -37,12 +39,8 @@ namespace Assets.Scripts
 
         public GameObject player;
 
-        public static float quota { get; private set; } = 1000f;
+        public static float quota { get; private set; } = 100f;
 
-        void Start()
-        {
-
-        }
         private void Awake()
         {
             enemyDamageHandler = enemy.GetComponent<EnemyDamageHandler>();
@@ -86,6 +84,12 @@ namespace Assets.Scripts
                 // Start coroutine to crossfade from outerSpace to enemyEncounter
                 StartCoroutine(CrossfadeAudioSources(outerSpaceAudioSource, enemyEncounterAudioSource, 1f)); // 1f is the fade duration, change as needed
             }
+        }
+
+        private IEnumerator FadeOutAndPlayQuotaReached(AudioSource fadeOutAudio, AudioSource quotaReachedAudio, float fadeDuration)
+        {
+            yield return StartCoroutine(FadeOutAudioSource(fadeOutAudio, fadeDuration));
+            quotaReachedAudio.Play();
         }
 
 
@@ -137,6 +141,13 @@ namespace Assets.Scripts
                 collectMineAudio.Play();
                 collectMineParticle.Play();
                 playerController.SetBudget(playerController.GetBudget() + (float)asteroidMiningSite.asteroidMine);
+
+                if (playerController.GetBudget() >= quota)
+                {
+                    // Fade out the outer space audio before playing the quota reach sound
+                    StartCoroutine(FadeOutAndPlayQuotaReached(outerSpaceAudioSource, playerReachQuotaAudioSource, 1f)); // 1f is the fade duration, adjust as needed
+                }
+
                 asteroidMiningSite.hasInspected = true;
                 HideInspectionChoiceUI();
             }
@@ -159,6 +170,21 @@ namespace Assets.Scripts
             asteroidMiningSite.hasInspected = true;
             HideInspectionChoiceUI();
         }
+
+        private IEnumerator FadeOutAudioSource(AudioSource audioSource, float fadeDuration)
+        {
+            float startVolume = audioSource.volume;
+
+            while (audioSource.volume > 0)
+            {
+                audioSource.volume -= startVolume * Time.deltaTime / fadeDuration;
+                yield return null;
+            }
+
+            audioSource.Stop();
+            audioSource.volume = startVolume;
+        }
+
 
         private IEnumerator CrossfadeAudioSources(AudioSource fadeOutAudio, AudioSource fadeInAudio, float duration)
         {
