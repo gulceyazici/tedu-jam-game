@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private float maxRotateAngle = 45.0f;
 
     private float xRange = 300.0f;
+    private float yRange = 100.0f;
 
     private float budget = 0f;
 
@@ -64,7 +65,16 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
         }
- 
+
+        if (transform.position.y > yRange)
+        {
+            transform.position = new Vector3(transform.position.x, yRange, transform.position.z);
+        }
+        if (transform.position.y < -yRange)
+        {
+            transform.position = new Vector3(transform.position.x, -yRange, transform.position.z);
+        }
+
     }
 
     private void RotateShip()
