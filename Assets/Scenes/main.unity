@@ -845,7 +845,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 242.76, y: 50}
+  m_SizeDelta: {x: 293.25, y: 50}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &433142135
 MonoBehaviour:
@@ -1072,8 +1072,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f45310d7cf61980498df9039e76c1c0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerShipSpeed: 50
-  playerShipXSpeed: 150
+  playerShipSpeed: 100
+  playerShipXSpeed: 300
   rotationSpeed: 200
   thrusterParticlesLeft: {fileID: 844539981}
   thrusterParticlesRight: {fileID: 163964938}
@@ -1089,7 +1089,7 @@ Rigidbody:
   m_GameObject: {fileID: 640453292}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1.5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -2468,15 +2468,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1430374184068749007, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.4
+      value: -7.8
       objectReference: {fileID: 0}
     - target: {fileID: 1430374184068749007, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 55.4
+      value: 89.4
       objectReference: {fileID: 0}
     - target: {fileID: 1430374184068749007, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9500.9
+      value: 9503
       objectReference: {fileID: 0}
     - target: {fileID: 1430374184068749007, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2516,7 +2516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1770588729010736245, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1770588729010736245, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
       propertyPath: m_TagString
@@ -2711,7 +2711,7 @@ MonoBehaviour:
   playerTransform: {fileID: 1757504524}
   offset: {x: 0, y: 50, z: 0}
   player: {fileID: 640453292}
-  followSpeed: 2
+  followSpeed: 10
 --- !u!4 &1207428891 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1430374184068749007, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
@@ -2734,7 +2734,6 @@ MonoBehaviour:
   bulletPrefab1: {fileID: 6459756463927716606, guid: e8d088480b3aa31458f3a1c84abd7383, type: 3}
   bulletPrefab2: {fileID: 6459756463927716606, guid: e8d088480b3aa31458f3a1c84abd7383, type: 3}
   fireDelay: 1
-  maxSpeed: 50
 --- !u!54 &1207428895
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2781,8 +2780,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 11.362379, y: 1, z: 2.1184142}
+  m_Center: {x: 0.394804, y: 0.000000007533244, z: -2.7662919}
 --- !u!114 &1207428897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2845,6 +2844,10 @@ MonoBehaviour:
   inspectionChoicePanel: {fileID: 1986548812}
   collectMineAudio: {fileID: 1219715891}
   collectMineParticle: {fileID: 843241509}
+  asteroidMiningSites:
+  - {fileID: 1069827316}
+  - {fileID: 1782001202}
+  enemy: {fileID: 1207428889}
   player: {fileID: 640453292}
 --- !u!82 &1219715891
 AudioSource:
@@ -3295,6 +3298,7 @@ GameObject:
   - component: {fileID: 1672142458}
   - component: {fileID: 1672142457}
   - component: {fileID: 1672142460}
+  - component: {fileID: 1672142461}
   m_Layer: 5
   m_Name: HP Panel
   m_TagString: Untagged
@@ -3430,6 +3434,18 @@ MonoBehaviour:
   - {fileID: 1846308791}
   - {fileID: 559697398}
   - {fileID: 1039205473}
+--- !u!225 &1672142461
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672142455}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!4 &1757504524 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4012241314400597289, guid: 3322c842c425b864ea8eb933bff766ca, type: 3}

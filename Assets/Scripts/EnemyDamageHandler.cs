@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class EnemyDamageHandler : MonoBehaviour
 {
     public int health = 5;
     public GameObject explosion;
+
+    public event Action EnemyDied;
 
     int correctLayer;
     // Start is called before the first frame update
@@ -29,20 +31,25 @@ public class EnemyDamageHandler : MonoBehaviour
             Die();
         }
     }
-    void Die()
+    public void Die()
     {
         explosion.SetActive(true);
 
-        // Delay the destruction of the GameObject by 1 second
         Invoke("DestroyEnemy", 0.6f);
+
+
     }
 
-    void DestroyEnemy()
+    public void DestroyEnemy()
     {
-        // Ensure to cancel any Invoke calls to prevent unexpected behaviors
         CancelInvoke();
+        gameObject.SetActive(false); // Deactivate the enemy
 
-        // Destroy the GameObject
-        Destroy(gameObject);
+        // Broadcast the enemy died event
+        EnemyDied?.Invoke();
+        explosion.SetActive(false);
     }
+
 }
+
+

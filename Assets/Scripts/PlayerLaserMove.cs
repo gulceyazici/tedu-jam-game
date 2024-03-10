@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerLaserMove : MonoBehaviour
 {
-    public float maxSpeed = 30f;
-    public float force = 2f;
+    [SerializeField] public float maxSpeed = 30f;
+    [SerializeField] public float force = 2f;
 
     // Update is called once per frame
     private void Start()

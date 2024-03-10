@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -24,6 +25,10 @@ namespace Assets.Scripts
         public AudioSource collectMineAudio;
         public ParticleSystem collectMineParticle;
 
+        public List<AsteroidMiningSite> asteroidMiningSites;
+
+        public GameObject enemy;
+        private EnemyDamageHandler enemyDamageHandler;
 
         public GameObject player;
 
@@ -35,8 +40,13 @@ namespace Assets.Scripts
         }
         private void Awake()
         {
+            enemyDamageHandler = enemy.GetComponent<EnemyDamageHandler>();
+            
             player = GameObject.FindWithTag("Player");
             playerController = player.GetComponent<PlayerController>();
+
+            // Subscribe to the enemy died event
+            enemyDamageHandler.EnemyDied += OnEnemyDied;
 
             if (Instance == null)
             {
@@ -91,9 +101,6 @@ namespace Assets.Scripts
             Debug.Log("near asteroid mine: " + asteroidMiningSite.asteroidMine.ToString());
 
 
-
-            Debug.Log(playerController);
-
             if (playerController != null && asteroidMiningSite.asteroidMine != AsteroidMines.None && asteroidMiningSite.hasInspected == false)
             {
 
@@ -103,12 +110,22 @@ namespace Assets.Scripts
                 asteroidMiningSite.hasInspected = true;
                 HideInspectionChoiceUI();
             }
-            else
+            
+            else if(asteroidMiningSite.asteroidHasEnemy == true)
             {
-                Debug.Log("player controller is null or asteroid doesn't has a mine");
+                asteroidMiningSite.hasInspected = true;
+                HideInspectionChoiceUI();
+                
+                foreach (AsteroidMiningSite asteroidMSite in asteroidMiningSites)
+                {
+                    asteroidMSite.gameObject.SetActive(false);
+                }
+                
+                enemy.SetActive(true);
 
             }
-
+            asteroidMiningSite.hasInspected = true;
+            HideInspectionChoiceUI();
         }
 
         public void OnCancelButtonPressed()
@@ -117,6 +134,27 @@ namespace Assets.Scripts
             // Hide the inspection choice UI
             HideInspectionChoiceUI();
         }
+
+        private void OnDestroy()
+        {
+            // Unsubscribe from the enemy died event
+            enemyDamageHandler.EnemyDied -= OnEnemyDied;
+        }
+
+        // This method will be called when the enemy dies
+        private void OnEnemyDied()
+        {
+            // Hide the enemy if it dies after inspection button is clicked
+            enemy.SetActive(false);
+
+            // Reactivate each asteroid
+            foreach(AsteroidMiningSite asteroid in asteroidMiningSites)
+            {
+                asteroid.gameObject.SetActive(true);
+            }
+            enemyDamageHandler.health = 5;
+        }
+
 
     }
 }

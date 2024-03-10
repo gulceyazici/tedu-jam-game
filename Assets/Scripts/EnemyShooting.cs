@@ -11,9 +11,8 @@ public class EnemyShooting : MonoBehaviour
     [SerializeField] public GameObject bulletPrefab2;
     int bulletLayer;
 
-    public float fireDelay = 0.50f;
+    [SerializeField] public float fireDelay = 0.50f;
     float cooldownTimer = 0;
-    public float maxSpeed = 50;
 
     void Start()
     {
