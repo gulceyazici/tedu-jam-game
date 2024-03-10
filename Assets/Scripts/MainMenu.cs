@@ -5,8 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class Play : MonoBehaviour
 {
+
+    [SerializeField]
+    private AudioSource mainMenuAudioSource; // Assign in the Inspector
+
+    void Start()
+    {
+        mainMenuAudioSource.Play();
+    }
+
     public void PlayGame()
     {
+        mainMenuAudioSource.Stop();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // scene builder order (it is going to the next scene)
     }
 
