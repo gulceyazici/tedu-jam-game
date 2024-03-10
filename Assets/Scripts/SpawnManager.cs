@@ -10,17 +10,17 @@ public class SpawnManager : MonoBehaviour
     private GameObject player;
     public GameManager gameManager;
 
-    private float spawnRangeX = 200.0f;
+    private float spawnRangeX = 300.0f;
     private float spawnPosY;
     private float spawnDelay = 0.0f;
-    private float spawnRepeat = 7.5f;
+    private float spawnRepeat = 5f;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         player = GameObject.FindWithTag("Player");
-        spawnPosY = player.transform.position.y + 250.0f;
+        spawnPosY = player.transform.position.y + 250f;
 
         InvokeRepeating("SpawnRandomAsteroid", spawnDelay, spawnRepeat);
     }
@@ -28,7 +28,7 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        spawnPosY = player.transform.position.y + 150f;
     }
 
     void SpawnRandomAsteroid()

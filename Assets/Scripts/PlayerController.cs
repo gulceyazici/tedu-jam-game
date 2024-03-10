@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private float maxRotateAngle = 45.0f;
 
     private float xRange = 300.0f;
-    private float yRange = 100.0f;
+    private float yRange = 400.0f;
 
     private float budget = 0f;
 
