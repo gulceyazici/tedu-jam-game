@@ -5,11 +5,18 @@ using UnityEngine;
 
 public class AsteroidProximityDetector : MonoBehaviour
 {
+    private AsteroidMiningSite miningSite;
+
+    private void Start()
+    {
+        miningSite = gameObject.GetComponent<AsteroidMiningSite>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.PlayerNearAsteroid(true, this.gameObject);
+            
+            GameManager.Instance.PlayerNearAsteroid(true, miningSite.hasInspected,this.gameObject);
         }
     }
 
@@ -17,7 +24,7 @@ public class AsteroidProximityDetector : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.PlayerNearAsteroid(false, this.gameObject);
+            GameManager.Instance.PlayerNearAsteroid(false, miningSite.hasInspected,this.gameObject);
         }
     }
 }

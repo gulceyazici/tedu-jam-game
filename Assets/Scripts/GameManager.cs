@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
@@ -22,6 +23,7 @@ namespace Assets.Scripts
 
         public AudioSource collectMineAudio;
         public ParticleSystem collectMineParticle;
+
 
         public GameObject player;
 
@@ -45,10 +47,10 @@ namespace Assets.Scripts
             }
         }
 
-        public void PlayerNearAsteroid(bool isNear, GameObject asteroid)
+        public void PlayerNearAsteroid(bool isNear, bool hasInspected,GameObject asteroid)
         {
 
-            if (isNear)
+            if (isNear && hasInspected == false)
             {
                 // Prompt UI to ask player if they want to inspect the asteroid
                 // This can be a simple UI panel with buttons
@@ -90,17 +92,19 @@ namespace Assets.Scripts
 
             Debug.Log(playerController);
 
-            if (playerController != null && asteroidMiningSite.asteroidMine != AsteroidMines.None)
+            if (playerController != null && asteroidMiningSite.asteroidMine != AsteroidMines.None && asteroidMiningSite.hasInspected == false)
             {
 
                 collectMineAudio.Play();
                 collectMineParticle.Play();
                 playerController.SetBudget(playerController.GetBudget() + (float)asteroidMiningSite.asteroidMine);
-                
+                asteroidMiningSite.hasInspected = true;
+                HideInspectionChoiceUI();
             }
             else
             {
                 Debug.Log("player controller is null or asteroid doesn't has a mine");
+
             }
             
         }
