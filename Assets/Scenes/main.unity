@@ -1089,7 +1089,7 @@ Rigidbody:
   m_GameObject: {fileID: 640453292}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1.5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -1582,6 +1582,108 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856961202}
   m_CullTransparentMesh: 1
+--- !u!1 &863942168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 863942170}
+  - component: {fileID: 863942169}
+  m_Layer: 0
+  m_Name: SpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &863942169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863942168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c45ae8d9fd8172468a7695d278f022f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  astreoidPrefabs:
+  - {fileID: 151664, guid: fa49e460baf435b4780da7196c2ab473, type: 3}
+  - {fileID: 141316, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
+  - {fileID: 130102, guid: 04d0bf4be9447154188d86f6e3b8dce9, type: 3}
+  gameManager: {fileID: 0}
+--- !u!4 &863942170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863942168}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -39.954967, y: 112.64503, z: 10374.45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &908902628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 908902630}
+  - component: {fileID: 908902629}
+  m_Layer: 0
+  m_Name: AsteroidDestroyer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &908902629
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908902628}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &908902630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908902628}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -44.055367, y: -200, z: 9500.127}
+  m_LocalScale: {x: 1000, y: 5, z: 10000}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &934703206
 GameObject:
   m_ObjectHideFlags: 0
@@ -2159,7 +2261,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroidHasMine: 0
   asteroidHasEnemy: 0
-  hasInspected: 0
   hasInspected: 0
   minePresenceProbability: 40
   enemyPresenceProbability: 50
@@ -2845,12 +2946,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inspectionChoicePanel: {fileID: 1986548812}
   collectMineAudio: {fileID: 1219715891}
-  collectMineParticle: {fileID: 1307766273}
+  collectMineParticle: {fileID: 843241509}
   asteroidMiningSites:
   - {fileID: 1069827316}
   - {fileID: 1782001202}
   enemy: {fileID: 1207428889}
-  enemyDamageHandler: {fileID: 0}
   player: {fileID: 640453292}
 --- !u!82 &1219715891
 AudioSource:
@@ -2948,11 +3048,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!198 &1307766273 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7194952087870367274, guid: a56fa166c27c1b64a90204cdc43a72fd, type: 3}
-  m_PrefabInstance: {fileID: 330069182}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1335483562
 GameObject:
   m_ObjectHideFlags: 0
@@ -3306,6 +3401,7 @@ GameObject:
   - component: {fileID: 1672142458}
   - component: {fileID: 1672142457}
   - component: {fileID: 1672142460}
+  - component: {fileID: 1672142461}
   m_Layer: 5
   m_Name: HP Panel
   m_TagString: Untagged
@@ -3441,6 +3537,18 @@ MonoBehaviour:
   - {fileID: 1846308791}
   - {fileID: 559697398}
   - {fileID: 1039205473}
+--- !u!225 &1672142461
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672142455}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!4 &1757504524 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4012241314400597289, guid: 3322c842c425b864ea8eb933bff766ca, type: 3}
@@ -4324,3 +4432,5 @@ SceneRoots:
   - {fileID: 2001564778}
   - {fileID: 1776753055}
   - {fileID: 1207428888}
+  - {fileID: 863942170}
+  - {fileID: 908902630}
