@@ -56,7 +56,7 @@ public class PlayerDamageHandler : MonoBehaviour
     IEnumerator DestroyPlayerAfterSound(float delay)
     {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
         Destroy(gameObject);
     }
 
