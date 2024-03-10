@@ -12,7 +12,6 @@ public class SelfDestruct : MonoBehaviour
 
         if (timer <= 0)
         {
-            Debug.Log(" destroy x: " + gameObject.transform.position.x);
             Destroy(gameObject);
         }
     }
