@@ -15,7 +15,8 @@ public class EnemyShooting : MonoBehaviour
 
     int bulletLayer;
 
-    [SerializeField] public float fireDelay = 0.50f;
+    [SerializeField] private float minFireDelay = 0.25f;
+    [SerializeField] private float maxFireDelay = 0.8f;
     float cooldownTimer = 0;
 
     void Start()
@@ -31,7 +32,7 @@ public class EnemyShooting : MonoBehaviour
         if (cooldownTimer <= 0)
         {
             // SHOOT!
-            cooldownTimer = fireDelay;
+            cooldownTimer = Random.Range(minFireDelay, maxFireDelay);
             GameObject bulletGO1 = (GameObject)Instantiate(bulletPrefab1);
             bulletGO1.transform.position = bulletOffset1.transform.position;
             GameObject bulletGO2 = (GameObject)Instantiate(bulletPrefab2);
