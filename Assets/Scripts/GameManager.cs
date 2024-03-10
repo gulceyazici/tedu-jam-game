@@ -113,7 +113,7 @@ namespace Assets.Scripts
             yield return new WaitForSeconds(quotaReachedAudio.clip.length);
 
             // Now that the quota audio has finished, load the new scene
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
         }
 
 
