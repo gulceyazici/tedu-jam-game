@@ -8,11 +8,13 @@ public class PlayerDamageHandler : MonoBehaviour
     int correctLayer;
     public GameObject explosion;
     // Start is called before the first frame update
+    public HealthDisplay playerHpController;
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Enemy"))
         {
             health--;
+            playerHpController.UpdateHealth(health);
         }
     }
     void Start()
