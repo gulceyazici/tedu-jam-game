@@ -1,5 +1,6 @@
 ﻿using Assets.Enums;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,10 @@ namespace Assets.Scripts
 
         [SerializeField]
         private GameObject inspectionChoicePanel; // Assign this in the Unity Inspector
+        [SerializeField]
+        private AudioSource outerSpaceAudioSource; // Assign in the Inspector
+        [SerializeField]
+        private AudioSource enemyEncounterAudioSource; // Assign in the Inspector
 
         private AsteroidMiningSite asteroidMiningSite;
         private PlayerController playerController;
@@ -57,7 +62,32 @@ namespace Assets.Scripts
             {
                 Destroy(gameObject);
             }
+
+            PlayOuterSpaceMusic();
         }
+
+        // Method to play outer space music
+        public void PlayOuterSpaceMusic()
+        {
+            if (!outerSpaceAudioSource.isPlaying)
+            {
+                outerSpaceAudioSource.Play();
+                // Start coroutine to crossfade from enemyEncounter to outerSpace
+                StartCoroutine(CrossfadeAudioSources(enemyEncounterAudioSource, outerSpaceAudioSource, 1f)); // 1f is the fade duration, change as needed
+            }
+        }
+
+        // Method to play enemy encounter music
+        public void PlayEnemyEncounterMusic()
+        {
+            if (!enemyEncounterAudioSource.isPlaying)
+            {
+                enemyEncounterAudioSource.Play();
+                // Start coroutine to crossfade from outerSpace to enemyEncounter
+                StartCoroutine(CrossfadeAudioSources(outerSpaceAudioSource, enemyEncounterAudioSource, 1f)); // 1f is the fade duration, change as needed
+            }
+        }
+
 
         public void PlayerNearAsteroid(bool isNear, bool hasInspected, GameObject asteroid)
         {
@@ -123,10 +153,34 @@ namespace Assets.Scripts
                 
                 enemy.SetActive(true);
 
+                PlayEnemyEncounterMusic();
+
             }
             asteroidMiningSite.hasInspected = true;
             HideInspectionChoiceUI();
         }
+
+        private IEnumerator CrossfadeAudioSources(AudioSource fadeOutAudio, AudioSource fadeInAudio, float duration)
+        {
+            float currentTime = 0;
+
+            // Get the current volume of the soundtracks to handle cases where they're not at max volume
+            float startFadeOutVolume = fadeOutAudio.volume;
+            float startFadeInVolume = fadeInAudio.volume;
+
+            while (currentTime < duration)
+            {
+                currentTime += Time.deltaTime;
+                fadeOutAudio.volume = Mathf.Lerp(startFadeOutVolume, 0f, currentTime / duration);
+                fadeInAudio.volume = Mathf.Lerp(startFadeInVolume, 1f, currentTime / duration);
+
+                yield return null; // Wait for next frame
+            }
+
+            fadeOutAudio.Stop();
+            fadeOutAudio.volume = startFadeOutVolume; // Optionally reset the fadeOutAudio volume back to its original level if needed
+        }
+
 
         public void OnCancelButtonPressed()
         {
@@ -153,6 +207,8 @@ namespace Assets.Scripts
                 asteroid.gameObject.SetActive(true);
             }
             enemyDamageHandler.health = 5;
+            Debug.Log("resetting enemy health, health: " + enemyDamageHandler.health);
+            PlayOuterSpaceMusic();
         }
 
 

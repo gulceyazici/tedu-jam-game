@@ -8,6 +8,9 @@ public class PlayerShooting : MonoBehaviour
     public GameObject bulletPrefab;
     int bulletLayer;
 
+    [SerializeField]
+    private AudioSource playerShootingAudioSource; // Assign in the Inspector
+
     public float fireDelay = 0.25f;
     float cooldownTimer = 0;
 
@@ -27,6 +30,9 @@ public class PlayerShooting : MonoBehaviour
             cooldownTimer = fireDelay;
 
             GameObject bulletGO = (GameObject)Instantiate(bulletPrefab);
+
+            playerShootingAudioSource.Play();
+
             bulletGO.transform.position = bulletOffset.transform.position;
             bulletGO.layer = bulletLayer;
         }
